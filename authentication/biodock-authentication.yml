@@ -1,0 +1,27 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.biodock.ai/public-api/authentication
+summary:
+  types: [apiKey]
+  api_key_in: [header]
+  oauth2_flows: []
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-API-KEY
+  description: >-
+    Single API key passed in the X-API-KEY request header on every request.
+    Keys are generated in the Biodock app under Settings -> API
+    (https://app.biodock.ai/settings/api). A key grants access to the owning
+    user's data, so it must be kept secret.
+  sources: [openapi/biodock-public-api-openapi.yml]
+verify:
+  operation: checkApiKey
+  method: GET
+  url: https://app.biodock.ai/api/external/check
+  note: Returns the user id, email, and a validity message when the key is valid.
+notes:
+- No OAuth, OpenID Connect, or scoped-permission model is documented; the API
+  uses a single per-user API key.
+- Key management (generate / regenerate) is done in the app UI, not via the API.
