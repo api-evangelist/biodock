@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Biodock Public Analysis Jobs Files API
+  description: Biodock's public REST API lets users invoke actions on the Biodock platform through simple web requests, so an AI microscopy image analysis built on Biodock can be integrated into scripts and programs. Actions invoked through the API are also reflected in the Biodock dashboard (uploaded files appear in the Filesystem, submitted analysis jobs appear on the results page). The API is in beta; resources may change. Note that creating an AI model and creating or publishing pipelines are visual, dashboard-only workflows and cannot be done through the API.
+  version: 1.0.0-beta
+  contact:
+    name: Biodock Support
+    url: https://docs.biodock.ai/company/contact-us
+    email: security@biodock.ai
+  termsOfService: https://www.biodock.ai/termsprivacy
+servers:
+- url: https://app.biodock.ai/api/external
+  description: Biodock public API (production)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Files
+  description: Uploading and listing Biodock Filesystem items
+paths:
+  /filesystem-items/upload-file:
+    post:
+      operationId: uploadFile
+      summary: Upload file
+      description: Upload a file to the Biodock Filesystem (up to 2 GB). Creates the destination folder if it does not exist. Larger files must be uploaded through the website.
+      tags:
+      - Files
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - fileName
+              - upload
+              properties:
+                fileName:
+                  type: string
+                  description: Desired name of the file in the Biodock filesystem.
+                destinationFolder:
+                  type: string
+                  description: Desired parent folder of the file. Will create folders if they do not exist. Defaults to the root folder.
+                upload:
+                  type: string
+                  format: binary
+                  description: File to upload.
+      responses:
+        '200':
+          description: File uploaded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+  /filesystem-items:
+    get:
+      operationId: listFilesystemItems
+      summary: List filesystem items
+      description: List items (files and folders) in the Biodock Filesystem.
+      tags:
+      - Files
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/StartingAfter'
+      - name: folderId
+        in: query
+        schema:
+          type: string
+        description: Parent folder id. Defaults to the root folder.
+      responses:
+        '200':
+          description: A page of filesystem items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilesystemItemList'
+components:
+  schemas:
+    FilesystemItemList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilesystemItem'
+        count:
+          type: integer
+    UploadResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        __t:
+          type: string
+          example: File
+    FilesystemItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        __t:
+          type: string
+          description: Discriminator - File or Folder.
+          enum:
+          - File
+          - Folder
+  parameters:
+    StartingAfter:
+      name: startingAfter
+      in: query
+      schema:
+        type: string
+      description: Pagination cursor id (id of the last item on the previous page).
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+      description: Maximum number of results to show.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: API key generated at https://app.biodock.ai/settings/api

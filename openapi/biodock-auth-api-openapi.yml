@@ -1,0 +1,56 @@
+openapi: 3.0.3
+info:
+  title: Biodock Public Analysis Jobs Auth API
+  description: Biodock's public REST API lets users invoke actions on the Biodock platform through simple web requests, so an AI microscopy image analysis built on Biodock can be integrated into scripts and programs. Actions invoked through the API are also reflected in the Biodock dashboard (uploaded files appear in the Filesystem, submitted analysis jobs appear on the results page). The API is in beta; resources may change. Note that creating an AI model and creating or publishing pipelines are visual, dashboard-only workflows and cannot be done through the API.
+  version: 1.0.0-beta
+  contact:
+    name: Biodock Support
+    url: https://docs.biodock.ai/company/contact-us
+    email: security@biodock.ai
+  termsOfService: https://www.biodock.ai/termsprivacy
+servers:
+- url: https://app.biodock.ai/api/external
+  description: Biodock public API (production)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Auth
+  description: API key verification
+paths:
+  /check:
+    get:
+      operationId: checkApiKey
+      summary: Verify API key
+      description: Verify that the provided API key is valid and return the associated user.
+      tags:
+      - Auth
+      responses:
+        '200':
+          description: API key is valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckResponse'
+        '401':
+          description: API key is missing or invalid.
+components:
+  schemas:
+    CheckResponse:
+      type: object
+      properties:
+        user:
+          type: string
+          example: auth0|1234567890
+        email:
+          type: string
+          format: email
+        messsage:
+          type: string
+          description: Status message (field name is spelled "messsage" in the API response).
+          example: API key is valid.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: API key generated at https://app.biodock.ai/settings/api

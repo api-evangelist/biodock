@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: Biodock Public Analysis Jobs Pipelines API
+  description: Biodock's public REST API lets users invoke actions on the Biodock platform through simple web requests, so an AI microscopy image analysis built on Biodock can be integrated into scripts and programs. Actions invoked through the API are also reflected in the Biodock dashboard (uploaded files appear in the Filesystem, submitted analysis jobs appear on the results page). The API is in beta; resources may change. Note that creating an AI model and creating or publishing pipelines are visual, dashboard-only workflows and cannot be done through the API.
+  version: 1.0.0-beta
+  contact:
+    name: Biodock Support
+    url: https://docs.biodock.ai/company/contact-us
+    email: security@biodock.ai
+  termsOfService: https://www.biodock.ai/termsprivacy
+servers:
+- url: https://app.biodock.ai/api/external
+  description: Biodock public API (production)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Pipelines
+  description: Listing published analysis pipelines
+paths:
+  /pipelines:
+    get:
+      operationId: listPipelines
+      summary: List pipelines
+      description: List your active, published analysis pipelines.
+      tags:
+      - Pipelines
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/StartingAfter'
+      responses:
+        '200':
+          description: A page of pipelines.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineList'
+components:
+  schemas:
+    PipelineList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipeline'
+        count:
+          type: integer
+    Pipeline:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+  parameters:
+    StartingAfter:
+      name: startingAfter
+      in: query
+      schema:
+        type: string
+      description: Pagination cursor id (id of the last item on the previous page).
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+      description: Maximum number of results to show.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: API key generated at https://app.biodock.ai/settings/api
