@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.biodock.ai/public-api/limitations
+versioning:
+  scheme: none
+  current: 1.0.0-beta
+  status: beta
+  note: >-
+    The public API is in beta and actively developed; resources may change. No
+    version path segment, version header, or dated-version scheme is documented.
+  docs: https://docs.biodock.ai/public-api/overview
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation / Sunset (RFC 8594) policy is documented.
+sla:
+  url: null
+  uptime_target: null
+status_page: https://biodock.statuspage.io/
+deprecated_operations: []
+notes:
+- Several capabilities are dashboard-only and explicitly not in the API yet
+  (S3/Google Drive/Dropbox import, creating/publishing pipelines, creating AI
+  models). See limitations doc.

@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/biodock-public-api-openapi.yml
+standards:
+- id: rest
+  conforms: true
+  evidence: Resource-oriented HTTP API over JSON with standard verbs (GET/POST).
+- id: api-key-auth
+  conforms: true
+  evidence: X-API-KEY header apiKey security scheme.
+- id: oauth2
+  conforms: false
+- id: oidc
+  conforms: false
+- id: cursor-pagination
+  conforms: true
+  evidence: limit + startingAfter cursor with results/count envelope on list endpoints.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No application/problem+json error envelope is documented.
+- id: async-job-polling
+  conforms: true
+  evidence: Analysis and mask jobs return status/percentageCompleted for submit-then-poll.
+compliance:
+  soc2_type_ii: true
+  iso_27001: true
+  source: https://www.biodock.ai/security
+  note: >-
+    Biodock states the platform is AICPA SOC 2 Type II certified and that its
+    authentication, database, and file-storage mechanisms are ISO 27001 and SOC 2
+    Type II certified. See security/biodock-trust-center.yml.

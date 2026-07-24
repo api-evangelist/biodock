@@ -1,0 +1,348 @@
+# generated: '2026-07-18'
+# method: searched
+# source: https://docs.biodock.ai/public-api/overview  (hand-authored from the published REST API reference)
+openapi: 3.0.3
+info:
+  title: Biodock Public API
+  description: >-
+    Biodock's public REST API lets users invoke actions on the Biodock platform
+    through simple web requests, so an AI microscopy image analysis built on
+    Biodock can be integrated into scripts and programs. Actions invoked through
+    the API are also reflected in the Biodock dashboard (uploaded files appear in
+    the Filesystem, submitted analysis jobs appear on the results page). The API
+    is in beta; resources may change. Note that creating an AI model and creating
+    or publishing pipelines are visual, dashboard-only workflows and cannot be
+    done through the API.
+  version: 1.0.0-beta
+  contact:
+    name: Biodock Support
+    url: https://docs.biodock.ai/company/contact-us
+    email: security@biodock.ai
+  termsOfService: https://www.biodock.ai/termsprivacy
+servers:
+  - url: https://app.biodock.ai/api/external
+    description: Biodock public API (production)
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: Auth
+    description: API key verification
+  - name: Files
+    description: Uploading and listing Biodock Filesystem items
+  - name: Analysis Jobs
+    description: Submitting, tracking, and downloading analysis jobs
+  - name: Pipelines
+    description: Listing published analysis pipelines
+paths:
+  /check:
+    get:
+      operationId: checkApiKey
+      summary: Verify API key
+      description: Verify that the provided API key is valid and return the associated user.
+      tags: [Auth]
+      responses:
+        '200':
+          description: API key is valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckResponse'
+        '401':
+          description: API key is missing or invalid.
+  /filesystem-items/upload-file:
+    post:
+      operationId: uploadFile
+      summary: Upload file
+      description: >-
+        Upload a file to the Biodock Filesystem (up to 2 GB). Creates the
+        destination folder if it does not exist. Larger files must be uploaded
+        through the website.
+      tags: [Files]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [fileName, upload]
+              properties:
+                fileName:
+                  type: string
+                  description: Desired name of the file in the Biodock filesystem.
+                destinationFolder:
+                  type: string
+                  description: >-
+                    Desired parent folder of the file. Will create folders if
+                    they do not exist. Defaults to the root folder.
+                upload:
+                  type: string
+                  format: binary
+                  description: File to upload.
+      responses:
+        '200':
+          description: File uploaded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+  /filesystem-items:
+    get:
+      operationId: listFilesystemItems
+      summary: List filesystem items
+      description: List items (files and folders) in the Biodock Filesystem.
+      tags: [Files]
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/StartingAfter'
+        - name: folderId
+          in: query
+          schema:
+            type: string
+          description: Parent folder id. Defaults to the root folder.
+      responses:
+        '200':
+          description: A page of filesystem items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilesystemItemList'
+  /analysis-jobs:
+    get:
+      operationId: listAnalysisJobs
+      summary: List analysis jobs
+      description: List the progress of all your analysis jobs.
+      tags: [Analysis Jobs]
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/StartingAfter'
+      responses:
+        '200':
+          description: A page of analysis jobs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisJobList'
+    post:
+      operationId: submitAnalysisJob
+      summary: Submit analysis job
+      description: >-
+        Submit an analysis job. The files must already be uploaded to the
+        Biodock Filesystem and you must have a published, user-created analysis
+        pipeline. Biodock-authored pipelines are not supported via the API.
+      tags: [Analysis Jobs]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [pipelineId, filesystemIds]
+              properties:
+                pipelineId:
+                  type: string
+                  description: Pipeline to use for analysis.
+                filesystemIds:
+                  type: array
+                  items:
+                    type: string
+                  description: Filesystem items to analyze.
+                name:
+                  type: string
+                  description: Name of the job.
+      responses:
+        '200':
+          description: Analysis job submitted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisJob'
+  /analysis-jobs/{id}:
+    get:
+      operationId: fetchAnalysisJob
+      summary: Fetch analysis job
+      description: View the progress and results of a specific analysis job.
+      tags: [Analysis Jobs]
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The analysis job.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisJob'
+  /analysis-jobs/{id}/download-masks:
+    post:
+      operationId: submitDownloadMasksJob
+      summary: Submit download masks job
+      description: >-
+        Generate the masks data for an analysis job. Masks data is not generated
+        by default during an analysis job.
+      tags: [Analysis Jobs]
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: Masks generation submitted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MasksJob'
+    get:
+      operationId: fetchDownloadMasksJob
+      summary: Fetch download masks job
+      description: >-
+        View the progress of masks generation and, once complete, obtain the
+        masks download link.
+      tags: [Analysis Jobs]
+      parameters:
+        - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The masks download job.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MasksJob'
+  /pipelines:
+    get:
+      operationId: listPipelines
+      summary: List pipelines
+      description: List your active, published analysis pipelines.
+      tags: [Pipelines]
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/StartingAfter'
+      responses:
+        '200':
+          description: A page of pipelines.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineList'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: API key generated at https://app.biodock.ai/settings/api
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+      description: Maximum number of results to show.
+    StartingAfter:
+      name: startingAfter
+      in: query
+      schema:
+        type: string
+      description: Pagination cursor id (id of the last item on the previous page).
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    CheckResponse:
+      type: object
+      properties:
+        user:
+          type: string
+          example: auth0|1234567890
+        email:
+          type: string
+          format: email
+        messsage:
+          type: string
+          description: Status message (field name is spelled "messsage" in the API response).
+          example: API key is valid.
+    UploadResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        __t:
+          type: string
+          example: File
+    FilesystemItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        __t:
+          type: string
+          description: Discriminator - File or Folder.
+          enum: [File, Folder]
+    FilesystemItemList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilesystemItem'
+        count:
+          type: integer
+    AnalysisJob:
+      type: object
+      properties:
+        id:
+          type: string
+        percentageCompleted:
+          type: integer
+        status:
+          type: string
+          enum: [PENDING, SUBMITTED, RUNNING, SUCCEEDED, FAILED]
+        objectsDataCSVUrl:
+          type: string
+          format: uri
+        aggregateDataCSVUrl:
+          type: string
+          format: uri
+    AnalysisJobList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnalysisJob'
+        count:
+          type: integer
+    MasksJob:
+      type: object
+      properties:
+        percentageCompleted:
+          type: integer
+        status:
+          type: string
+          enum: [SUBMITTED, RUNNING, SUCCEEDED, FAILED]
+        masksZipUrl:
+          type: string
+          format: uri
+    Pipeline:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    PipelineList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipeline'
+        count:
+          type: integer

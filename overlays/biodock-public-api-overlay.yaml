@@ -1,0 +1,27 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Biodock Public API
+  version: 1.0.0
+extends: openapi/biodock-public-api-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-18'
+    x-apievangelist-source: https://docs.biodock.ai/public-api/overview
+    x-api-lifecycle: beta
+- target: $.info
+  update:
+    x-artifacts:
+      authentication: authentication/biodock-authentication.yml
+      conventions: conventions/biodock-conventions.yml
+      data-model: data-model/biodock-data-model.yml
+      mcp: mcp/biodock-mcp.yml
+      lifecycle: lifecycle/biodock-lifecycle.yml
+- target: $.paths['/analysis-jobs'].post
+  update:
+    x-async: true
+    x-poll-operation: fetchAnalysisJob
+- target: $.paths['/analysis-jobs/{id}/download-masks'].post
+  update:
+    x-async: true
+    x-poll-operation: fetchDownloadMasksJob

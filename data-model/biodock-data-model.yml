@@ -1,0 +1,48 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/biodock-public-api-openapi.yml
+entities:
+- name: FilesystemItem
+  description: A file or folder in the Biodock Filesystem.
+  discriminator: __t   # File | Folder
+  key: id
+  fields: [id, name, createdAt, __t]
+- name: File
+  description: An uploaded image in the Biodock Filesystem (__t = File).
+  key: id
+  fields: [id, name, createdAt]
+- name: Folder
+  description: A folder container in the Biodock Filesystem (__t = Folder).
+  key: id
+  fields: [id, name, createdAt]
+- name: Pipeline
+  description: A published, user-created analysis pipeline. Created only in the app UI.
+  key: id
+  fields: [id, description, createdAt]
+- name: AnalysisJob
+  description: An asynchronous job that runs a pipeline over filesystem items.
+  key: id
+  fields: [id, name, status, percentageCompleted, objectsDataCSVUrl, aggregateDataCSVUrl]
+- name: MasksJob
+  description: An asynchronous job that generates downloadable segmentation masks for an analysis job.
+  fields: [status, percentageCompleted, masksZipUrl]
+relationships:
+- from: Folder
+  to: FilesystemItem
+  type: has_many
+  via: folderId
+  note: Filesystem items are listed within a parent folder (folderId query param).
+- from: AnalysisJob
+  to: Pipeline
+  type: belongs_to
+  via: pipelineId
+- from: AnalysisJob
+  to: FilesystemItem
+  type: has_many
+  via: filesystemIds
+- from: MasksJob
+  to: AnalysisJob
+  type: belongs_to
+  via: path id (/analysis-jobs/{id}/download-masks)
+id_conventions:
+  note: Ids are opaque strings; no documented type-prefix scheme.

@@ -1,0 +1,12 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/biodock-public-api-openapi.yml
+skills:
+- file: biodock-upload-and-analyze.md
+  name: Upload images and run a Biodock analysis
+  api: openapi/biodock-public-api-openapi.yml
+  operations: [checkApiKey, uploadFile, listPipelines, submitAnalysisJob, fetchAnalysisJob, submitDownloadMasksJob, fetchDownloadMasksJob]
+- file: biodock-manage-files.md
+  name: Manage the Biodock Filesystem
+  api: openapi/biodock-public-api-openapi.yml
+  operations: [checkApiKey, uploadFile, listFilesystemItems]

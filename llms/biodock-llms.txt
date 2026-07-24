@@ -1,0 +1,70 @@
+# Product Documentation
+
+## Biodock Documentation
+
+- [Welcome to Biodock](https://docs.biodock.ai/master.md): Biodock's AI platform automates time-consuming microscopy image analysis.
+- [Why Biodock](https://docs.biodock.ai/why-biodock.md)
+- [Start here (choose a tutorial)](https://docs.biodock.ai/start/start-here-choose-a-tutorial.md)
+- [Path 1: AI-assisted analysis](https://docs.biodock.ai/start/path-1-ai-assisted-analysis.md)
+- [Path 2: Train a fully-automated AI model](https://docs.biodock.ai/start/path-2-train-a-fully-automated-ai-model.md)
+- [Set up your project](https://docs.biodock.ai/start/path-2-train-a-fully-automated-ai-model/set-up-your-project.md)
+- [Label and train](https://docs.biodock.ai/start/path-2-train-a-fully-automated-ai-model/label-and-train.md)
+- [Labeling shortcuts](https://docs.biodock.ai/start/path-2-train-a-fully-automated-ai-model/labeling-shortcuts.md)
+- [Run your AI model](https://docs.biodock.ai/start/path-2-train-a-fully-automated-ai-model/run-your-ai-model.md)
+- [Configuring your model](https://docs.biodock.ai/start/path-2-train-a-fully-automated-ai-model/configuring-your-model.md)
+- [Project settings](https://docs.biodock.ai/ai-projects/project-settings.md)
+- [Sharing your AI project](https://docs.biodock.ai/ai-projects/sharing-your-ai-project.md)
+- [Training a model](https://docs.biodock.ai/ai-projects/training-a-model.md)
+- [Public AI models](https://docs.biodock.ai/ai-projects/public-ai-models.md)
+- [Results dashboard overview](https://docs.biodock.ai/ai-analysis/results-dashboard-overview.md)
+- [Download results and reports](https://docs.biodock.ai/ai-analysis/download-results-and-reports.md)
+- [Correcting results to improve your model](https://docs.biodock.ai/ai-analysis/correcting-results-to-improve-your-model.md)
+- [Editing objects (QC)](https://docs.biodock.ai/ai-analysis/editing-objects-qc.md)
+- [Filters (like flow cytometry)](https://docs.biodock.ai/ai-analysis/filters-like-flow-cytometry.md)
+- [Biodock Platform Script Guidelines](https://docs.biodock.ai/biodock-scripts/biodock-platform-script-guidelines.md)
+- [Uploading images](https://docs.biodock.ai/files/uploading-images.md)
+- [AWS S3 integration](https://docs.biodock.ai/files/aws-s3-integration.md): Biodock supports integration with existing S3 cloud datastores
+- [View and manage data](https://docs.biodock.ai/files/view-and-manage-data.md)
+- [Viewing images](https://docs.biodock.ai/files/view-and-manage-data/viewing-images.md)
+- [File details and download](https://docs.biodock.ai/files/view-and-manage-data/file-details-and-download.md)
+- [Copy, cut, move](https://docs.biodock.ai/files/view-and-manage-data/copy-cut-move.md)
+- [Sharing data](https://docs.biodock.ai/files/view-and-manage-data/sharing-data.md)
+- [Merging channels](https://docs.biodock.ai/files/view-and-manage-data/merging-channels.md)
+- [Supported image types](https://docs.biodock.ai/files/supported-image-types.md)
+- [Overview](https://docs.biodock.ai/public-api/overview.md)
+- [Authentication](https://docs.biodock.ai/public-api/authentication.md)
+- [Examples](https://docs.biodock.ai/public-api/examples.md)
+- [Resources](https://docs.biodock.ai/public-api/resources.md)
+- [Files](https://docs.biodock.ai/public-api/resources/files.md)
+- [Analysis Jobs](https://docs.biodock.ai/public-api/resources/analysis-jobs.md)
+- [Pipelines](https://docs.biodock.ai/public-api/resources/pipelines.md)
+- [Limitations](https://docs.biodock.ai/public-api/limitations.md)
+- [Deep AI models](https://docs.biodock.ai/deep-ai-models.md): After creating an AI model, you should evaluate the model visually and or by looking at the statistics page.
+- [Evaluating Performance](https://docs.biodock.ai/deep-ai-models/evaluating-performance.md)
+- [Account registration](https://docs.biodock.ai/user/account-registration.md)
+- [Change password, login, logout](https://docs.biodock.ai/user/change-password-login-logout.md)
+- [Usage limits and team](https://docs.biodock.ai/user/usage-limits-and-team.md)
+- [Filesize based limits](https://docs.biodock.ai/user/usage-limits-and-team/filesize-based-limits.md)
+- [Run credits limits](https://docs.biodock.ai/user/usage-limits-and-team/run-credits-limits.md)
+- [Free user limitations](https://docs.biodock.ai/user/free-user-limitations.md)
+- [Billing](https://docs.biodock.ai/user/billing.md)
+- [Academics and startups](https://docs.biodock.ai/company/academics-and-startups.md)
+- [Contact us](https://docs.biodock.ai/company/contact-us.md)
+- [Citing Biodock](https://docs.biodock.ai/company/citing-biodock.md)
+- [Security & IP](https://docs.biodock.ai/company/security-and-ip.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information, you can query the documentation dynamically by asking a question.
+Perform an HTTP GET request on a page URL with the `ask` query parameter:
+```
+GET https://docs.biodock.ai/master.md?ask=<question>
+```
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

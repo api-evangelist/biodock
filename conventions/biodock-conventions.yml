@@ -1,0 +1,59 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.biodock.ai/public-api/
+authentication:
+  style: api-key-header
+  header: X-API-KEY
+  see: authentication/biodock-authentication.yml
+base_url: https://app.biodock.ai/api/external
+content_type: application/json
+media:
+  json_requests: true
+  multipart_upload: true   # POST /filesystem-items/upload-file uses multipart/form-data
+pagination:
+  style: cursor
+  request_params:
+    limit: Maximum number of results to show.
+    startingAfter: Pagination cursor id (id of the last item on the previous page).
+  response_fields:
+    results: Array of items on the current page.
+    count: Number of items returned on the current page.
+  applies_to:
+  - listFilesystemItems
+  - listAnalysisJobs
+  - listPipelines
+idempotency:
+  supported: false
+  note: >-
+    No idempotency key or de-duplication contract is documented. Submitting an
+    analysis job or uploading a file twice creates two records.
+async_jobs:
+  pattern: submit-then-poll
+  note: >-
+    Analysis jobs and mask-generation jobs are asynchronous. Submit returns a
+    job with status/percentageCompleted; poll the fetch endpoint until status is
+    SUCCEEDED to obtain the result/download URLs.
+  statuses: [PENDING, SUBMITTED, RUNNING, SUCCEEDED, FAILED]
+  result_urls:
+  - objectsDataCSVUrl
+  - aggregateDataCSVUrl
+  - masksZipUrl
+identifiers:
+  type_discriminator: __t
+  note: Filesystem items carry a __t discriminator field (File or Folder).
+versioning:
+  scheme: none-documented
+  status: beta
+  note: API is in beta; resources may change. No version path segment or version header is documented.
+  see: lifecycle/biodock-lifecycle.yml
+error_envelope:
+  documented: false
+  note: >-
+    The docs publish 200 success shapes only; an explicit error catalog / error
+    envelope is not documented. checkApiKey implies a 401 on an invalid key.
+rate_limiting:
+  documented_headers: none
+  note: >-
+    No rate-limit response headers are documented. Usage is governed by account
+    run-credit / storage / file-size limits rather than request-rate limits.
+  see: https://docs.biodock.ai/user/usage-limits-and-team

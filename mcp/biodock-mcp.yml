@@ -1,0 +1,42 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/biodock-public-api-openapi.yml
+note: >-
+  No official hosted/remote MCP server was found for Biodock. This is a candidate
+  tool list derived one-to-one from the documented public REST API operations, to
+  seed a future MCP server. Auth is a single X-API-KEY header.
+server:
+  name: biodock
+  transport: http
+  auth:
+    type: apiKey
+    header: X-API-KEY
+tools:
+- name: check_api_key
+  description: Verify that the API key is valid and return the associated user.
+  source_operation: openapi/biodock-public-api-openapi.yml#checkApiKey
+- name: upload_file
+  description: Upload a file to the Biodock Filesystem (up to 2 GB).
+  source_operation: openapi/biodock-public-api-openapi.yml#uploadFile
+- name: list_filesystem_items
+  description: List files and folders in the Biodock Filesystem.
+  source_operation: openapi/biodock-public-api-openapi.yml#listFilesystemItems
+- name: submit_analysis_job
+  description: Submit an analysis job against a published pipeline over uploaded files.
+  source_operation: openapi/biodock-public-api-openapi.yml#submitAnalysisJob
+- name: fetch_analysis_job
+  description: Fetch the progress and results of a specific analysis job.
+  source_operation: openapi/biodock-public-api-openapi.yml#fetchAnalysisJob
+- name: list_analysis_jobs
+  description: List the progress of all analysis jobs.
+  source_operation: openapi/biodock-public-api-openapi.yml#listAnalysisJobs
+- name: submit_download_masks_job
+  description: Generate the downloadable segmentation masks for an analysis job.
+  source_operation: openapi/biodock-public-api-openapi.yml#submitDownloadMasksJob
+- name: fetch_download_masks_job
+  description: Fetch mask-generation progress and the masks download link.
+  source_operation: openapi/biodock-public-api-openapi.yml#fetchDownloadMasksJob
+- name: list_pipelines
+  description: List active, published analysis pipelines.
+  source_operation: openapi/biodock-public-api-openapi.yml#listPipelines

@@ -1,0 +1,23 @@
+generated: '2026-07-18'
+method: searched
+note: >-
+  No genuine /.well-known/ documents were found. app.biodock.ai returns HTTP 200
+  for every probed path, but the body is the single-page-app index.html
+  (content-type text/html), i.e. a SPA catch-all fallback, not a real well-known
+  document. www.biodock.ai returns 404. Recorded honestly; no WellKnown pointer
+  is wired because no real document is served.
+hosts:
+- host: https://app.biodock.ai
+  documents:
+  - {path: /.well-known/security.txt, status: 200, content_type: text/html, genuine: false, reason: spa-fallback}
+  - {path: /.well-known/openid-configuration, status: 200, content_type: text/html, genuine: false, reason: spa-fallback}
+  - {path: /.well-known/oauth-authorization-server, status: 200, content_type: text/html, genuine: false, reason: spa-fallback}
+  - {path: /.well-known/api-catalog, status: 200, content_type: text/html, genuine: false, reason: spa-fallback}
+  - {path: /.well-known/ai-plugin.json, status: 200, content_type: text/html, genuine: false, reason: spa-fallback}
+- host: https://www.biodock.ai
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}

@@ -1,7 +1,19 @@
 aid: biodock
 name: Biodock
-description: Biodock is a company surfaced as a portfolio company of a16z and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Biodock is an AI platform that makes deep learning easy to train, run, and
+  interpret on biological and microscopy images, dramatically accelerating R&D
+  image analysis. Researchers upload microscopy images, label and train
+  fully-automated deep AI models in a visual labeler (no code required), and run
+  those models across large datasets to segment, classify, and quantify objects
+  such as cells - producing results comparable to flow cytometry along with
+  downloadable object-level and aggregate data. Biodock is used by academic labs
+  and Fortune 500 biopharma and life-science organizations, and is SOC 2 Type II
+  and ISO 27001 certified. Beyond the visual app, Biodock exposes a public REST
+  API (beta) for uploading files to the Biodock Filesystem, submitting analysis
+  jobs against published pipelines, tracking job progress, and downloading
+  results and segmentation masks - so analysis can be scripted and integrated
+  into internal tools and imaging pipelines.
 url: https://raw.githubusercontent.com/api-evangelist/biodock/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,14 +21,174 @@ x-backed-by:
 - a16z
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://cdn.prod.website-files.com/63213d26df394911486f698e/637bb41c1cac3a4ded2e9f23_SEOImage.jpg
 tags:
 - Company
-apis: []
+- Artificial Intelligence
+- Machine Learning
+- Image Analysis
+- Microscopy
+- Life Sciences
+- Biotechnology
+- Computer Vision
+- Cell Analysis
+- Research
+apis:
+- aid: biodock:biodock-analysis-jobs-api
+  name: Biodock Analysis Jobs API
+  description: Submitting, tracking, and downloading analysis jobs
+  humanURL: https://docs.biodock.ai/public-api/overview
+  baseURL: https://app.biodock.ai/api/external
+  tags:
+  - Analysis Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/biodock-analysis-jobs-api-openapi.yml
+  - type: Authentication
+    url: authentication/biodock-authentication.yml
+  - type: Conventions
+    url: conventions/biodock-conventions.yml
+  - type: DataModel
+    url: data-model/biodock-data-model.yml
+  - type: Documentation
+    url: https://docs.biodock.ai/public-api/overview
+  - type: APIReference
+    url: https://docs.biodock.ai/public-api/resources
+  - type: GettingStarted
+    url: https://docs.biodock.ai/public-api/authentication
+  - type: Examples
+    url: https://docs.biodock.ai/public-api/examples
+- aid: biodock:biodock-auth-api
+  name: Biodock Auth API
+  description: API key verification
+  humanURL: https://docs.biodock.ai/public-api/overview
+  baseURL: https://app.biodock.ai/api/external
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/biodock-auth-api-openapi.yml
+  - type: Authentication
+    url: authentication/biodock-authentication.yml
+  - type: Conventions
+    url: conventions/biodock-conventions.yml
+  - type: DataModel
+    url: data-model/biodock-data-model.yml
+  - type: Documentation
+    url: https://docs.biodock.ai/public-api/overview
+  - type: APIReference
+    url: https://docs.biodock.ai/public-api/resources
+  - type: GettingStarted
+    url: https://docs.biodock.ai/public-api/authentication
+  - type: Examples
+    url: https://docs.biodock.ai/public-api/examples
+- aid: biodock:biodock-files-api
+  name: Biodock Files API
+  description: Uploading and listing Biodock Filesystem items
+  humanURL: https://docs.biodock.ai/public-api/overview
+  baseURL: https://app.biodock.ai/api/external
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/biodock-files-api-openapi.yml
+  - type: Authentication
+    url: authentication/biodock-authentication.yml
+  - type: Conventions
+    url: conventions/biodock-conventions.yml
+  - type: DataModel
+    url: data-model/biodock-data-model.yml
+  - type: Documentation
+    url: https://docs.biodock.ai/public-api/overview
+  - type: APIReference
+    url: https://docs.biodock.ai/public-api/resources
+  - type: GettingStarted
+    url: https://docs.biodock.ai/public-api/authentication
+  - type: Examples
+    url: https://docs.biodock.ai/public-api/examples
+- aid: biodock:biodock-pipelines-api
+  name: Biodock Pipelines API
+  description: Listing published analysis pipelines
+  humanURL: https://docs.biodock.ai/public-api/overview
+  baseURL: https://app.biodock.ai/api/external
+  tags:
+  - Pipelines
+  properties:
+  - type: OpenAPI
+    url: openapi/biodock-pipelines-api-openapi.yml
+  - type: Authentication
+    url: authentication/biodock-authentication.yml
+  - type: Conventions
+    url: conventions/biodock-conventions.yml
+  - type: DataModel
+    url: data-model/biodock-data-model.yml
+  - type: Documentation
+    url: https://docs.biodock.ai/public-api/overview
+  - type: APIReference
+    url: https://docs.biodock.ai/public-api/resources
+  - type: GettingStarted
+    url: https://docs.biodock.ai/public-api/authentication
+  - type: Examples
+    url: https://docs.biodock.ai/public-api/examples
+common:
+- type: DeveloperPortal
+  url: https://docs.biodock.ai/
+- type: Documentation
+  url: https://docs.biodock.ai/
+- type: SignUp
+  url: https://app.biodock.ai/signup
+- type: Login
+  url: https://app.biodock.ai/
+- type: Blog
+  url: https://blog.biodock.ai/
+- type: StatusPage
+  url: https://biodock.statuspage.io/
+- type: Support
+  url: https://www.biodock.ai/contact
+- type: TermsOfService
+  url: https://www.biodock.ai/termsprivacy
+- type: PrivacyPolicy
+  url: https://www.biodock.ai/termsprivacy
+- type: Security
+  url: https://www.biodock.ai/security
+- type: Compliance
+  url: https://www.biodock.ai/security
+- type: TrustCenter
+  url: https://www.biodock.ai/security
+- type: LLMsTxt
+  url: llms/biodock-llms.txt
+- type: Lifecycle
+  url: lifecycle/biodock-lifecycle.yml
+- type: Conformance
+  url: conformance/biodock-conformance.yml
+- type: VulnerabilityDisclosure
+  url: security/biodock-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/biodock-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
