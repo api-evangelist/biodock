@@ -146,6 +146,10 @@ apis:
   - type: Examples
     url: https://docs.biodock.ai/public-api/examples
 common:
+- type: MCPServer
+  url: mcp/biodock-mcp.yml
+- type: Overlay
+  url: overlays/biodock-public-api-overlay.yaml
 - type: DeveloperPortal
   url: https://docs.biodock.ai/
 - type: Documentation
