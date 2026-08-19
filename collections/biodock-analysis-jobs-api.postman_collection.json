@@ -1,0 +1,540 @@
+{
+  "item": [
+    {
+      "id": "abf8cfee-02c7-4f4f-a1cc-2e93bd8ef3dd",
+      "name": "Analysis Jobs",
+      "description": {
+        "content": "Submitting, tracking, and downloading analysis jobs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b4497bb6-3fc1-4efc-b461-1717ac56d521",
+          "name": "List analysis jobs",
+          "request": {
+            "name": "List analysis jobs",
+            "description": {
+              "content": "List the progress of all your analysis jobs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analysis-jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to show."
+                },
+                {
+                  "disabled": false,
+                  "key": "startingAfter",
+                  "value": "<string>",
+                  "description": "Pagination cursor id (id of the last item on the previous page)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28e7a540-09d3-4439-9594-d75f0e4ede9a",
+              "name": "A page of analysis jobs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analysis-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"percentageCompleted\": 5884,\n      \"status\": \"SUCCEEDED\",\n      \"objectsDataCSVUrl\": \"https://v.iszofldevCJvxttLRc4WijAL\",\n      \"aggregateDataCSVUrl\": \"https://faMBuuuEbSnLxIfBHMEIlW.ioamcGrpaQ3Rp-tybTK1uFBob\"\n    },\n    {\n      \"id\": \"string\",\n      \"percentageCompleted\": 7777,\n      \"status\": \"SUCCEEDED\",\n      \"objectsDataCSVUrl\": \"http://IfKftbCteZhhCfBaDXAjhBWIMs.niT18qZ,S3DRCTCo1zV7VD,DxeGYUxkcpxtEE8y,dKTObpv-ygjf9h\",\n      \"aggregateDataCSVUrl\": \"https://xStPDufkHMsMPEWEnujv.dxuUv+jWmSdwTvBOAbm0h2LBCD96Pr1JUs5DK5EclRatW7C73UnqIjlw+e.NJ-Akq3focL1mZmfbz+SZGx\"\n    }\n  ],\n  \"count\": 6319\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8dc29f18-f305-43ec-ac89-357237c23b1a",
+          "name": "Submit analysis job",
+          "request": {
+            "name": "Submit analysis job",
+            "description": {
+              "content": "Submit an analysis job. The files must already be uploaded to the Biodock Filesystem and you must have a published, user-created analysis pipeline. Biodock-authored pipelines are not supported via the API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analysis-jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"filesystemIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b79b5a1c-5916-46fd-b309-7979d8ac8ae3",
+              "name": "Analysis job submitted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analysis-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pipelineId\": \"<string>\",\n  \"filesystemIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"percentageCompleted\": 451,\n  \"status\": \"PENDING\",\n  \"objectsDataCSVUrl\": \"https://mwyjNJ.xlR4LBsrYIdhXmbXyh9nOxa1Ehg.l7irQps4SknXFx\",\n  \"aggregateDataCSVUrl\": \"http://ynJfCVvUGNOFIqSXxxdsJNMHi.oduUx-P07lyK..U3H\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2645e02-d10d-4d4f-92b7-5fc76fcb6b68",
+          "name": "Fetch analysis job",
+          "request": {
+            "name": "Fetch analysis job",
+            "description": {
+              "content": "View the progress and results of a specific analysis job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analysis-jobs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "470268d4-4c4e-4af5-975c-a024f21244a4",
+              "name": "The analysis job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analysis-jobs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"percentageCompleted\": 451,\n  \"status\": \"PENDING\",\n  \"objectsDataCSVUrl\": \"https://mwyjNJ.xlR4LBsrYIdhXmbXyh9nOxa1Ehg.l7irQps4SknXFx\",\n  \"aggregateDataCSVUrl\": \"http://ynJfCVvUGNOFIqSXxxdsJNMHi.oduUx-P07lyK..U3H\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "498f5f9d-5fc2-4b88-94b1-43a3bae36a19",
+          "name": "Submit download masks job",
+          "request": {
+            "name": "Submit download masks job",
+            "description": {
+              "content": "Generate the masks data for an analysis job. Masks data is not generated by default during an analysis job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analysis-jobs",
+                ":id",
+                "download-masks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10ce9b43-d7d1-45d4-96ff-bada13265b35",
+              "name": "Masks generation submitted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analysis-jobs",
+                    ":id",
+                    "download-masks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"percentageCompleted\": 2475,\n  \"status\": \"SUCCEEDED\",\n  \"masksZipUrl\": \"https://RobVQFoejANVYoBkCmWiIjlgiyKvJEzj.xarQFbGd\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69888bc9-6f6a-405a-8bf0-a3e8a0cebee2",
+          "name": "Fetch download masks job",
+          "request": {
+            "name": "Fetch download masks job",
+            "description": {
+              "content": "View the progress of masks generation and, once complete, obtain the masks download link.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analysis-jobs",
+                ":id",
+                "download-masks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39f206f9-3e8c-4396-b6cd-fa930339cbb1",
+              "name": "The masks download job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analysis-jobs",
+                    ":id",
+                    "download-masks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"percentageCompleted\": 2475,\n  \"status\": \"SUCCEEDED\",\n  \"masksZipUrl\": \"https://RobVQFoejANVYoBkCmWiIjlgiyKvJEzj.xarQFbGd\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.biodock.ai/api/external",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4cecc983-fc00-43b0-87ee-b5083c83aa30",
+    "name": "Biodock Public Analysis Jobs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Biodock's public REST API lets users invoke actions on the Biodock platform through simple web requests, so an AI microscopy image analysis built on Biodock can be integrated into scripts and programs. Actions invoked through the API are also reflected in the Biodock dashboard (uploaded files appear in the Filesystem, submitted analysis jobs appear on the results page). The API is in beta; resources may change. Note that creating an AI model and creating or publishing pipelines are visual, dashboard-only workflows and cannot be done through the API.\n\nContact Support:\n Name: Biodock Support\n Email: security@biodock.ai",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Biodock Public Analysis Jobs Files API",
+    "version": "1.0.0-beta"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.biodock.ai/api/external/filesystem-items/upload-file",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "fileName",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "destinationFolder",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "upload",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a file to the Biodock Filesystem (up to 2 GB). Creates the destination folder if it does not exist. Larger files must be uploaded through the website."
+        },
+        {
+          "info": {
+            "name": "List filesystem items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.biodock.ai/api/external/filesystem-items",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to show."
+              },
+              {
+                "name": "startingAfter",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor id (id of the last item on the previous page)."
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "Parent folder id. Defaults to the root folder."
+              }
+            ]
+          },
+          "docs": "List items (files and folders) in the Biodock Filesystem."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

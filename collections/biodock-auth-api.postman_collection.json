@@ -1,0 +1,166 @@
+{
+  "item": [
+    {
+      "id": "0b48a038-f696-4c19-9a3f-2ab7e6832080",
+      "name": "Auth",
+      "description": {
+        "content": "API key verification",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7aae23ae-0140-4a95-b614-3778bb0b66df",
+          "name": "Verify API key",
+          "request": {
+            "name": "Verify API key",
+            "description": {
+              "content": "Verify that the provided API key is valid and return the associated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "09b5d9a7-9da7-41b8-ba36-53d447cfbc7d",
+              "name": "API key is valid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": \"auth0|1234567890\",\n  \"email\": \"1Yb@uujxHmsgyo.gpn\",\n  \"messsage\": \"API key is valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "040cf4dc-cc6b-44c1-8ab5-41a46644da44",
+              "name": "API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.biodock.ai/api/external",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7122e2a3-ad3f-4190-ac12-eab2ffc2a9f8",
+    "name": "Biodock Public Analysis Jobs Auth API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Biodock's public REST API lets users invoke actions on the Biodock platform through simple web requests, so an AI microscopy image analysis built on Biodock can be integrated into scripts and programs. Actions invoked through the API are also reflected in the Biodock dashboard (uploaded files appear in the Filesystem, submitted analysis jobs appear on the results page). The API is in beta; resources may change. Note that creating an AI model and creating or publishing pipelines are visual, dashboard-only workflows and cannot be done through the API.\n\nContact Support:\n Name: Biodock Support\n Email: security@biodock.ai",
+      "type": "text/plain"
+    }
+  }
+}

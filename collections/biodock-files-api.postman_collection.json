@@ -1,0 +1,296 @@
+{
+  "item": [
+    {
+      "id": "90192ab2-35d9-468b-b6db-7078e8f86bac",
+      "name": "Files",
+      "description": {
+        "content": "Uploading and listing Biodock Filesystem items",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2e51a642-3870-470f-acc2-e40fe3d09456",
+          "name": "Upload file",
+          "request": {
+            "name": "Upload file",
+            "description": {
+              "content": "Upload a file to the Biodock Filesystem (up to 2 GB). Creates the destination folder if it does not exist. Larger files must be uploaded through the website.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filesystem-items",
+                "upload-file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "fileName",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Desired name of the file in the Biodock filesystem."
+                },
+                {
+                  "key": "upload",
+                  "type": "file",
+                  "description": "(Required) File to upload."
+                },
+                {
+                  "key": "destinationFolder",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Desired parent folder of the file. Will create folders if they do not exist. Defaults to the root folder."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d5d69630-af05-4ec4-a1bc-fea868fb96d3",
+              "name": "File uploaded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filesystem-items",
+                    "upload-file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Desired name of the file in the Biodock filesystem.",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) File to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "upload",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Desired parent folder of the file. Will create folders if they do not exist. Defaults to the root folder.",
+                        "type": "text/plain"
+                      },
+                      "key": "destinationFolder",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"__t\": \"File\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5b69159-6582-46b5-9d25-d49c4955500c",
+          "name": "List filesystem items",
+          "request": {
+            "name": "List filesystem items",
+            "description": {
+              "content": "List items (files and folders) in the Biodock Filesystem.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filesystem-items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to show."
+                },
+                {
+                  "disabled": false,
+                  "key": "startingAfter",
+                  "value": "<string>",
+                  "description": "Pagination cursor id (id of the last item on the previous page)."
+                },
+                {
+                  "disabled": false,
+                  "key": "folderId",
+                  "value": "<string>",
+                  "description": "Parent folder id. Defaults to the root folder."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2682bd3-d97b-4338-9b07-1b3a37b3a85d",
+              "name": "A page of filesystem items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filesystem-items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "folderId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"1956-08-17T21:55:36.976Z\",\n      \"__t\": \"File\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"1998-09-19T18:36:56.315Z\",\n      \"__t\": \"Folder\"\n    }\n  ],\n  \"count\": 8859\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.biodock.ai/api/external",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5a5b73fc-1c88-4251-94d8-44ab9b0bbb23",
+    "name": "Biodock Public Analysis Jobs Files API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Biodock's public REST API lets users invoke actions on the Biodock platform through simple web requests, so an AI microscopy image analysis built on Biodock can be integrated into scripts and programs. Actions invoked through the API are also reflected in the Biodock dashboard (uploaded files appear in the Filesystem, submitted analysis jobs appear on the results page). The API is in beta; resources may change. Note that creating an AI model and creating or publishing pipelines are visual, dashboard-only workflows and cannot be done through the API.\n\nContact Support:\n Name: Biodock Support\n Email: security@biodock.ai",
+      "type": "text/plain"
+    }
+  }
+}
