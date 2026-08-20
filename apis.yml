@@ -40,6 +40,17 @@ image: https://cdn.prod.website-files.com/63213d26df394911486f698e/637bb41c1cac3
 tags:
 - Company
 - Artificial Intelligence
+- Machine-Learning
+- Image Analysis
+- Microscopy
+- Life Sciences
+- Biotechnology
+- Computer-Vision
+- Cell Analysis
+- Research
+tags_raw:
+- Company
+- Artificial Intelligence
 - Machine Learning
 - Image Analysis
 - Microscopy
@@ -79,6 +90,8 @@ apis:
   humanURL: https://docs.biodock.ai/public-api/overview
   baseURL: https://app.biodock.ai/api/external
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -103,6 +116,8 @@ apis:
   humanURL: https://docs.biodock.ai/public-api/overview
   baseURL: https://app.biodock.ai/api/external
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
