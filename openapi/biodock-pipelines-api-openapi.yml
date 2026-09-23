@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Biodock Public Analysis Jobs Pipelines API
-  description: Biodock's public REST API lets users invoke actions on the Biodock platform through simple web requests, so an AI microscopy image analysis built on Biodock can be integrated into scripts and programs. Actions invoked through the API are also reflected in the Biodock dashboard (uploaded files appear in the Filesystem, submitted analysis jobs appear on the results page). The API is in beta; resources may change. Note that creating an AI model and creating or publishing pipelines are visual, dashboard-only workflows and cannot be done through the API.
+  title: Biodock Public Pipelines API
+  description: Biodock's public REST API lets users invoke actions on the Biodock platform through simple web requests, so an AI microscopy image analysis built on Biodock can be integrated into scripts and programs.
   version: 1.0.0-beta
   contact:
     name: Biodock Support
@@ -36,15 +36,6 @@ paths:
                 $ref: '#/components/schemas/PipelineList'
 components:
   schemas:
-    PipelineList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Pipeline'
-        count:
-          type: integer
     Pipeline:
       type: object
       properties:
@@ -55,6 +46,15 @@ components:
         createdAt:
           type: string
           format: date-time
+    PipelineList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipeline'
+        count:
+          type: integer
   parameters:
     StartingAfter:
       name: startingAfter
