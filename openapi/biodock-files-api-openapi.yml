@@ -74,19 +74,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/FilesystemItemList'
 components:
-  parameters:
-    StartingAfter:
-      name: startingAfter
-      in: query
-      schema:
-        type: string
-      description: Pagination cursor id (id of the last item on the previous page).
-    Limit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-      description: Maximum number of results to show.
   schemas:
     UploadResponse:
       type: object
@@ -121,6 +108,19 @@ components:
           enum:
           - File
           - Folder
+  parameters:
+    StartingAfter:
+      name: startingAfter
+      in: query
+      schema:
+        type: string
+      description: Pagination cursor id (id of the last item on the previous page).
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+      description: Maximum number of results to show.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

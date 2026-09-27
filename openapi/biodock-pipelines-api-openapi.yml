@@ -56,18 +56,18 @@ components:
         count:
           type: integer
   parameters:
-    StartingAfter:
-      name: startingAfter
-      in: query
-      schema:
-        type: string
-      description: Pagination cursor id (id of the last item on the previous page).
     Limit:
       name: limit
       in: query
       schema:
         type: integer
       description: Maximum number of results to show.
+    StartingAfter:
+      name: startingAfter
+      in: query
+      schema:
+        type: string
+      description: Pagination cursor id (id of the last item on the previous page).
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
