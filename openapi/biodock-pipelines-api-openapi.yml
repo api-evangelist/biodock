@@ -36,6 +36,15 @@ paths:
                 $ref: '#/components/schemas/PipelineList'
 components:
   schemas:
+    PipelineList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pipeline'
+        count:
+          type: integer
     Pipeline:
       type: object
       properties:
@@ -46,15 +55,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    PipelineList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Pipeline'
-        count:
-          type: integer
   parameters:
     Limit:
       name: limit
