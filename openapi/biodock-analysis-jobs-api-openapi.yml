@@ -117,49 +117,25 @@ paths:
                 $ref: '#/components/schemas/MasksJob'
 components:
   parameters:
-    Limit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-      description: Maximum number of results to show.
-    StartingAfter:
-      name: startingAfter
-      in: query
-      schema:
-        type: string
-      description: Pagination cursor id (id of the last item on the previous page).
     PathId:
       name: id
       in: path
       required: true
       schema:
         type: string
+    StartingAfter:
+      name: startingAfter
+      in: query
+      schema:
+        type: string
+      description: Pagination cursor id (id of the last item on the previous page).
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+      description: Maximum number of results to show.
   schemas:
-    MasksJob:
-      type: object
-      properties:
-        percentageCompleted:
-          type: integer
-        status:
-          type: string
-          enum:
-          - SUBMITTED
-          - RUNNING
-          - SUCCEEDED
-          - FAILED
-        masksZipUrl:
-          type: string
-          format: uri
-    AnalysisJobList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnalysisJob'
-        count:
-          type: integer
     AnalysisJob:
       type: object
       properties:
@@ -179,6 +155,30 @@ components:
           type: string
           format: uri
         aggregateDataCSVUrl:
+          type: string
+          format: uri
+    AnalysisJobList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnalysisJob'
+        count:
+          type: integer
+    MasksJob:
+      type: object
+      properties:
+        percentageCompleted:
+          type: integer
+        status:
+          type: string
+          enum:
+          - SUBMITTED
+          - RUNNING
+          - SUCCEEDED
+          - FAILED
+        masksZipUrl:
           type: string
           format: uri
   securitySchemes:

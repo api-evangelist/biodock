@@ -84,6 +84,14 @@ components:
             $ref: '#/components/schemas/FilesystemItem'
         count:
           type: integer
+    UploadResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        __t:
+          type: string
+          example: File
     FilesystemItem:
       type: object
       properties:
@@ -100,27 +108,19 @@ components:
           enum:
           - File
           - Folder
-    UploadResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        __t:
-          type: string
-          example: File
   parameters:
-    Limit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-      description: Maximum number of results to show.
     StartingAfter:
       name: startingAfter
       in: query
       schema:
         type: string
       description: Pagination cursor id (id of the last item on the previous page).
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+      description: Maximum number of results to show.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
