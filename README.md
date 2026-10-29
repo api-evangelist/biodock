@@ -64,6 +64,122 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Biodock is a company surfaced as a portfolio company of a16z and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Biodock is an AI platform that makes deep learning easy to train, run, and interpret on biological and microscopy images, dramatically accelerating R&D image analysis. Researchers upload microscopy images, label and train fully-automated deep AI models in a visual labeler (no code required), and run those models across large datasets to segment, classify, and quantify objects such as cells - producing results comparable to flow cytometry along with downloadable object-level and aggregate data. Biodock is used by academic labs and Fortune 500 biopharma and life-science organizations, and is SOC 2 Type II and ISO 27001 certified. Beyond the visual app, Biodock exposes a public REST API (beta) for uploading files to the Biodock Filesystem, submitting analysis jobs against published pipelines, tracking job progress, and downloading results and segmentation masks - so analysis can be scripted and integrated into internal tools and imaging pipelines.
 
-Backed by: a16z
+**Areas:** Company · Artificial Intelligence · Machine Learning · Image Analysis · Microscopy · Life Sciences · Biotechnology · Computer Vision · Cell Analysis · Research
+
+## Biodock on APIs.io
+
+Everything profiled for Biodock is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/biodock/](https://apis.io/providers/biodock/)** — or go straight to one of the APIs or properties below.
+
+### APIs (4)
+
+- [Biodock Analysis Jobs API](https://apis.io/apis/biodock/biodock-analysis-jobs-api/) — Submitting, tracking, and downloading analysis jobs
+- [Biodock Auth API](https://apis.io/apis/biodock/biodock-auth-api/) — API key verification
+- [Biodock Files API](https://apis.io/apis/biodock/biodock-files-api/) — Uploading and listing Biodock Filesystem items
+- [Biodock Pipelines API](https://apis.io/apis/biodock/biodock-pipelines-api/) — Listing published analysis pipelines
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [biodock](https://apis.io/servers/biodock/biodock/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Biodock Public Analysis Jobs API](https://apis.io/collections/biodock/open-biodock-analysis-jobs-api/)
+- [Biodock Public Analysis Jobs Auth API](https://apis.io/collections/biodock/open-biodock-auth-api/)
+- [Biodock Public Analysis Jobs Files API](https://apis.io/collections/biodock/open-biodock-files-api/)
+- [Biodock Public Analysis Jobs Pipelines API](https://apis.io/collections/biodock/open-biodock-pipelines-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Biodock Public Api Overlay](https://apis.io/overlays/biodock/biodock-public-api-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Biodock Authentication](https://apis.io/security/biodock/biodock-authentication/)
+- [Biodock Domain Security](https://apis.io/security/biodock/biodock-domain-security/)
+- [Biodock Trust Center](https://apis.io/security/biodock/biodock-trust-center/)
+- [Biodock Vulnerability Disclosure](https://apis.io/security/biodock/biodock-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.biodock.ai/)
+- [Documentation](https://docs.biodock.ai/)
+- [Sign up](https://app.biodock.ai/signup)
+- [Support](https://www.biodock.ai/contact)
+- [Blog](https://blog.biodock.ai/)
+- [Security](https://www.biodock.ai/security)
+- [Compliance](https://www.biodock.ai/security)
+- [Trust centre](https://www.biodock.ai/security)
+- [Terms of service](https://www.biodock.ai/termsprivacy)
+- [Privacy policy](https://www.biodock.ai/termsprivacy)
+- [Status](https://biodock.statuspage.io/)
+
+## API Evangelist rating
+
+**Kin Score 47.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 51.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 43.4 |
+
+**Agent readiness 22.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 30.1** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/biodock/](https://apis.io/providers/biodock/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Biodock: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/biodock/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
